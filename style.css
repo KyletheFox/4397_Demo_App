@@ -41,12 +41,11 @@ html, body {
 
 #buttons > #button-box {
 	background-color: #999;
+	text-align: center;
 }
 
 #button-box > button {
-	margin-left: auto;
-	margin-right: auto;
-	align-items: center;
+	margin-top: 7px;
 }
 
 #content {
