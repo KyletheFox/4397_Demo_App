@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>Demo Angular App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+	<!-- Bootstrap -->
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+
+	<!-- Modules -->
+	<script type="text/javascript" src="./js/app.js"></script>
+
+	 <!-- Controllers -->
+    <script src="./js/controllers/MainController.js"></script>
+
+    <!-- Directives -->
+    <script src="./js/directives/academics.js"></script>
+    <script src="./js/directives/techProj.js"></script>
+    <script src="./js/directives/volunteer.js"></script>
+
+
+</head>
+<body ng-app="SomeDemo">
+	<div ng-controller="MainController" ng-init="display=0">
+
+	<div class="container-fluid">
+	
+		
+<!-- Top Row -->
+		<div class="row" id="top-empty">	
+			<!-- EMPTY -->
+		</div>
+
+<!-- Name Row -->
+		<div class="row" id="name">	
+			<div class="col col-xs-1">
+				<!-- EMPTY -->
+			</div>
+
+			<div class="col col-xs-10" id="name-heading"> 
+				<span>Kyle O'Neill</span>
+			</div>
+
+			<div class="col">
+				<!-- EMPTY -->
+			</div>
+		</div>
+		
+<!-- Button Row -->
+		<div class="row" id="buttons">
+			<div class="col col-xs-1">
+				<!-- EMPTY -->
+			</div>
+
+			<div class="col col-xs-10" id="button-box">
+				<button type="button" class="btn btn-default" ng-click="changeDis(1)">Academics</button>
+				<button type="button" class="btn btn-default" ng-click="changeDis(2)">Technical Projects</button>
+				<button type="button" class="btn btn-default" ng-click="changeDis(3)">Volunteer Projects</button>
+			</div>
+
+			<div class="col">
+				<!-- EMPTY -->
+			</div>
+		</div>
+
+
+<!-- Content Row -->
+		<div class="row" id="content">
+			<div class="col col-xs-1">
+				<!-- EMPTY -->
+			</div>
+
+			<div class="col col-xs-10" id="content-box">
+
+				<div id="content-box-text">
+
+					<div ng-show="display == 0">
+						<img src="img/profilepic.jpg">
+					</div>
+
+					<academics ng-show="display == 1"></academics>
+
+					<tech-proj ng-show="display == 2"></tech-proj>
+
+					<volunteer ng-show="display == 3"></volunteer>
+
+				</div>
+
+			</div>
+
+			<div class="col">
+				<!-- EMPTY -->
+			</div>
+		</div>
+
+<!-- Bottom Row -->
+		<div class="row" id="bottom-empty">	
+			<!-- EMPTY -->
+		</div>
+	
+	</div> <!-- End of Container Fluid -->
+
+</body>
+</html>

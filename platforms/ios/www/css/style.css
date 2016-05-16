@@ -1,0 +1,73 @@
+html, body {
+	height:100%;
+	line-height:1;
+}
+
+.col {
+	height:100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#top-empty {
+	height: 12vh;
+}
+
+#bottom-empty {
+	height: 5vh;
+}
+
+#name {
+	height: 15vh;
+}
+
+#name-heading {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+#name-heading > span {
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 3em;
+}
+
+#buttons {
+	height: 15vh;
+}
+
+#buttons > #button-box {
+	background-color: #999;
+	text-align: center;
+}
+
+#button-box > button {
+	margin-top: 7px;
+}
+
+#content {
+	height: 53vh;
+}
+
+#content > #content-box {
+	background-color: #999;
+}
+
+
+/* Debuging */
+.mark-blue {
+	border: 2px solid blue;
+}
+
+.mark-red {
+	border: 2px solid red;
+}
+
+/* Bootstrap Override */
+.col-xs-1 .col-xs-10 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
