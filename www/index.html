@@ -30,41 +30,65 @@
     <script src="./js/directives/techProj.js"></script>
     <script src="./js/directives/volunteer.js"></script>
 
-
+	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
+	<script type="text/javascript" src="js/webpage.js"></script> 
 </head>
 <body ng-app="SomeDemo">
 	<div ng-controller="MainController" ng-init="display=0">
 
+	 <!--Bootstrap Fixed Navbar -->
+   <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      
+      <div class="navbar-header">
+        
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="icon-bar"></span>     
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>     
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>     
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                         
+        </button>
+        <a class="navbar-brand" href="index.html">Kyle O'Neill</a>
+
+
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+	
+		<ul class="nav navbar-nav navbar-text navbar-right">
+          <li><a href="#">Sign In</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-text navbar-left">
+          <li><a href="resume.pdf">Resume</a></li>
+          <li><a href="bank_app/bank.html">Bank App</a></li>
+        </ul>
+
+      </div>
+
+
+    </div>
+  </nav>
+
 	<div class="container-fluid">
 	
-		
 <!-- Top Row -->
 		<div class="row" id="top-empty">	
 			<!-- EMPTY -->
 		</div>
 
-<!-- Name Row -->
-		<div class="row" id="name">	
-			<div class="col col-xs-1">
-				<!-- EMPTY -->
-			</div>
-
-			<div class="col col-xs-10" id="name-heading"> 
-				<span>Kyle O'Neill</span>
-			</div>
-
-			<div class="col">
-				<!-- EMPTY -->
-			</div>
-		</div>
 		
 <!-- Button Row -->
 		<div class="row" id="buttons">
-			<div class="col col-xs-1">
+			<div class="col col-xs-1 col-md-3">
 				<!-- EMPTY -->
 			</div>
 
-			<div class="col col-xs-10" id="button-box">
+			<div class="col col-xs-10 col-md-6" id="button-box">
 				<button type="button" class="btn btn-default" ng-click="changeDis(1)">Academics</button>
 				<button type="button" class="btn btn-default" ng-click="changeDis(2)">Technical Projects</button>
 				<button type="button" class="btn btn-default" ng-click="changeDis(3)">Volunteer Projects</button>
@@ -78,16 +102,16 @@
 
 <!-- Content Row -->
 		<div class="row" id="content">
-			<div class="col col-xs-1">
+			<div class="col col-xs-1 col-md-3">
 				<!-- EMPTY -->
 			</div>
 
-			<div class="col col-xs-10" id="content-box">
+			<div class="col col-xs-10 col-md-6" id="content-box">
 
 				<div id="content-box-text">
 
 					<div ng-show="display == 0">
-						<img src="img/profilepic.jpg">
+						<img src="img/profilepic.jpg" id="home-page-pic">
 					</div>
 
 					<academics ng-show="display == 1"></academics>
