@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 		j = 0;
 		k = 0;
-
++
 		$.each(result, function(i, obj) {
 			element = document.createElement('li');
 			element.innerHTML = '<a href="#" id="' + j + '">' + obj + '</a>';
