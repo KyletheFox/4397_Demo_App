@@ -1,5 +1,5 @@
 app.directive('techProj', function() {
 	return {
-		templateUrl: 'js/directives/techProj.html'
+		templateUrl: 'js/directives/techProj.php'
 	};
 });

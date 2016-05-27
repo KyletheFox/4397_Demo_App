@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 		$.each(result, function(i, obj) {
 			element = document.createElement('li');
-			element.innerHTML = '<a href="#" id="' + j + '">' + obj + '</a>'
+			element.innerHTML = '<a href="#" id="' + j + '">' + obj + '</a>';
 			$('.dropdown-menu').append(element);
 			abv[j] = i;
 			j++;
@@ -40,7 +40,7 @@ $(document).ready(function() {
     					exRate = objj;
     					console.log('ii: ' + ii);
     					console.log(exRate);
-    				};
+    				}
     			});	// End .each
 
     			$(".go").click(function() {

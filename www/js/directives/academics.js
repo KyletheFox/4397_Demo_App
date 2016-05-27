@@ -1,5 +1,5 @@
 app.directive( "academics", function() {
 	return {
-		templateUrl: 'js/directives/academics.html'
+		templateUrl: 'js/directives/academics.php'
 	};
 });
