@@ -1,30 +1,75 @@
-<?php 	
+<?php 
+	//  ------ PHP functions ----------------	
 	function redirectTo($newLocation) {
 		header("Location: " . $newLocation);
 		exit;
 	}
+	// --------------------------------------
+
+	// Included for debugging
+	include 'ChromePhp.php';
+	ChromePhp::log('Hello Console!');
+
 	// Start Session
 	session_start();
 
-	// Attempt to gain access to mysql server
-	$username = "root";
-	$password = "C7t32813";
+	// ------ Attempt to gain access to mysql server -----
+
+	// Settings for login into database
+	$username = "root";			// Change to nonroot user
+	$password = "C7t32813";		// Change to new user password
 	$dbhost = "127.0.0.1";		// Need to change for live server
 	$dbname = "user_pass";
+
+	// Connect to DB server
 	$connection = mysqli_connect($dbhost, $username, $password, $dbname);
 
+	// Display db connection error if exists
 	if (mysqli_connect_errno()) {
 		die("Database Connection Failed " . mysqli_connect_error() .
 			mysqli_connect_error() . 
 			" (" . mysqli_errno() . ")"
 		);
-	}
-	
-	if (isset($_POST['submit'])) {
-		$submit = 1;
 	} else {
+		// Connection is successful
+
+		// Checks to see if the submit button was pressed
+		if (isset($_POST['submit'])) {
+			// Get username and password from POST
+			$user = $_POST['username'];
+			$pass = $_POST['password'];
+
+			// SQL quere string
+			$query =  "SELECT * FROM logininfo ";
+			$query .= "WHERE username = " . $user . " AND";
+			$query .= "password = " . $pass;
+
+			// See if there is a username/password match
+			$match = mysqli_query($connect, $query);
+
+			// Set session value to logged in
+			$_SESSION['logged_in'] = 1;			// True
+		} else {
+			$_SESSION['logged_in'] = 0;
+		}
+	}
+	// ---------------------------------------------------
+	
+	// ----- Actions for when login form is submitted -------
+	if (isset($_POST['submit'])) {	// Submit was pushed at least once
+		$submit = 1;
+		 
+		// Check for redirect to login or failure
+		if ($submit == 1) {		// Successful login
+			redirectTo("index.php");
+		} else { 				// Uncessful login atempt
+			// Code......
+		}
+
+	} else {	// Submit was never hit yet
 		$submit = 0;
 	}
+	// ----------------------------------------------------
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,6 +161,11 @@
 		<div class="row" id="buttons">
 			<div class="col col-xs-1 col-md-3">
 				<!-- EMPTY -->
+				<?php 
+					if ($_SESSION['logged_in'] == 1) {
+						echo "<h1>pppp</h1>";
+					}
+				 ?>
 			</div>
 
 			<div class="col col-xs-10 col-md-6" id="button-box">
