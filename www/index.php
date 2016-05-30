@@ -1,3 +1,31 @@
+<?php 	
+	function redirectTo($newLocation) {
+		header("Location: " . $newLocation);
+		exit;
+	}
+	// Start Session
+	session_start();
+
+	// Attempt to gain access to mysql server
+	$username = "root";
+	$password = "C7t32813";
+	$dbhost = "127.0.0.1";		// Need to change for live server
+	$dbname = "user_pass";
+	$connection = mysqli_connect($dbhost, $username, $password, $dbname);
+
+	if (mysqli_connect_errno()) {
+		die("Database Connection Failed " . mysqli_connect_error() .
+			mysqli_connect_error() . 
+			" (" . mysqli_errno() . ")"
+		);
+	}
+	
+	if (isset($_POST['submit'])) {
+		$submit = 1;
+	} else {
+		$submit = 0;
+	}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +125,7 @@
 			</div>
 
 			<div class="col">
-				<!-- EMPTY -->
+				
 			</div>
 		</div>
 
@@ -138,7 +166,20 @@
 
 					<volunteer ng-show="<?php echo $home; ?> == 3"></volunteer>
 
-					<login ng-show="<?php echo $home; ?> == 4"></login>
+					<div ng-show="<?php echo $home; ?> == 4">
+						<?php 
+							if ($submit==1) {
+								echo " I Clicked Submit ";
+							}
+						 ?>
+						<form action="index.php?id=4" method="post">
+								Username: <input type="text" name="username" value="" /><br />
+								Password: <input type="password" name="password" value="" /><br />
+								<br />
+								<input type="submit" name="submit" value="Submit" />
+								<?php // name attributed needed for it to be inclded with POST Request ?>
+						</form>
+					</div>
 
 				</div>
 
@@ -151,7 +192,7 @@
 
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
-			<!-- EMPTY -->
+		
 		</div>
 	
 	</div> <!-- End of Container Fluid -->

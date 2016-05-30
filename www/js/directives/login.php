@@ -1,3 +1,8 @@
+<?php 
+	if ($_SESSION["submit"]==1) {
+		echo "i love pie";
+	}
+ ?>
 <form action="index.php?id=4" method="post">
 		Username: <input type="text" name="username" value="" /><br />
 		Password: <input type="password" name="password" value="" /><br />
