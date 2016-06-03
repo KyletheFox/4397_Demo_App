@@ -8,17 +8,16 @@
 
 	// Included for debugging
 	include 'ChromePhp.php';
-	ChromePhp::log('Hello Console!');
-
+	
 	// Start Session
 	session_start();
 
 	// ------ Attempt to gain access to mysql server -----
 
 	// Settings for login into database
-	$username = "root";			// Change to nonroot user
-	$password = "C7t32813";		// Change to new user password
-	$dbhost = "127.0.0.1";		// Need to change for live server
+	$username = "root";	// Change to nonroot user - root / User_Level
+	$password = "C7t32813";		// Change to new user password - perkasie
+	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
 	// Connect to DB server
@@ -30,39 +29,59 @@
 			mysqli_connect_error() . 
 			" (" . mysqli_errno() . ")"
 		);
-	} else {
+	} 
+	else {
 		// Connection is successful
+		ChromePhp::log("Am I logged_in: " . $_SESSION['logged_in']);
+		// Checks to see if log_in_redirect is set
 
 		// Checks to see if the submit button was pressed
-		if (isset($_POST['submit'])) {
+		if (!empty($_POST['submit'])) {
 			// Get username and password from POST
 			$user = $_POST['username'];
 			$pass = $_POST['password'];
 
 			// SQL quere string
 			$query =  "SELECT * FROM logininfo ";
-			$query .= "WHERE username = " . $user . " AND";
-			$query .= "password = " . $pass;
+			$query .= 'WHERE username =  "' . $user . '" AND ';
+			$query .= 'password = "' . $pass . '"';
 
 			// See if there is a username/password match
-			$match = mysqli_query($connect, $query);
-
+			$match = mysqli_query($connection, $query);
+			$match = mysqli_fetch_assoc($match);
+			//print_r($match);
+			//ChromePhp::log("not empty match: " . !empty($match));
+			
 			// Set session value to logged in
-			$_SESSION['logged_in'] = 1;			// True
-		} else {
-			$_SESSION['logged_in'] = 0;
+			if ( !empty($match) ) {
+				$_SESSION['user'] = $user;		// Save username for welcome message
+				$_SESSION['logged_in'] = 1;		// Sets the user login state	
+				$_POST['log_in_redirect'] = 1;	// Flag for after redirecting 
+				redirectTo("index.php");
+			} else {
+				// No username/password match
+				$_SESSION['logged_in'] = 0;	
+			}
+
+		} 
+		else {
+			// Connection error
+			if ($_SESSION['logged_in'] != 1 && !empty($_POST['log_in_redirect']))
+				$_SESSION['logged_in'] = 0;
+			//ChromePhp::log("Not logged_in: " . $_SESSION['logged_in']);
 		}
 	}
 	// ---------------------------------------------------
 	
+	/*
 	// ----- Actions for when login form is submitted -------
 	if (isset($_POST['submit'])) {	// Submit was pushed at least once
-		$submit = 1;
-		 
+		ChromePhp::log("submit was pushed");
+		
 		// Check for redirect to login or failure
-		if ($submit == 1) {		// Successful login
-			redirectTo("index.php");
-		} else { 				// Uncessful login atempt
+		if ($_SESSION['logged_in'] == 1) {		// Successful login
+			//redirectTo("index.php");
+		} else { 								// Uncessful login atempt
 			// Code......
 		}
 
@@ -70,6 +89,7 @@
 		$submit = 0;
 	}
 	// ----------------------------------------------------
+	*/
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,11 +156,23 @@
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
 	
 		<ul class="nav navbar-nav navbar-text navbar-right">
+		<?php if ($_SESSION['logged_in']==0) { ?>
           <li><a href="#" onclick="location.href='index.php?id=4'">Sign In</a></li>
+        <?php } else {?>
+        	 <li><a href="#" onclick="location.href='index.php?id=4'">Welcome,
+        	 <?php 
+        	 	// Checks to see if the user is set in $_SESSION
+        	 	if (!empty($_SESSION['user']) && $_SESSION['logged_in'] == 1) {
+        	 		echo $_SESSION['user'];
+        	 	}
+        	  ?></a></li>
+        <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-text navbar-left">
+        <?php if ($_SESSION['logged_in']==1) { ?>
           <li><a href="resume.pdf">Resume</a></li>
           <li><a href="bank_app/bank.php">Currency Converter</a></li>
+        <?php } ?>
         </ul>
 
       </div>
@@ -161,11 +193,6 @@
 		<div class="row" id="buttons">
 			<div class="col col-xs-1 col-md-3">
 				<!-- EMPTY -->
-				<?php 
-					if ($_SESSION['logged_in'] == 1) {
-						echo "<h1>pppp</h1>";
-					}
-				 ?>
 			</div>
 
 			<div class="col col-xs-10 col-md-6" id="button-box">
@@ -217,17 +244,16 @@
 					<volunteer ng-show="<?php echo $home; ?> == 3"></volunteer>
 
 					<div ng-show="<?php echo $home; ?> == 4">
-						<?php 
-							if ($submit==1) {
-								echo " I Clicked Submit ";
-							}
-						 ?>
 						<form action="index.php?id=4" method="post">
 								Username: <input type="text" name="username" value="" /><br />
 								Password: <input type="password" name="password" value="" /><br />
 								<br />
 								<input type="submit" name="submit" value="Submit" />
-								<?php // name attributed needed for it to be inclded with POST Request ?>
+								<?php 
+									if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
+										echo "Unsuccessful Login - Please Try Again";
+									} 	
+								?>
 						</form>
 					</div>
 
@@ -249,3 +275,9 @@
 
 </body>
 </html>
+
+<?php 
+
+	// 5. Free Memory
+	mysqli_close($connection);
+ ?>
