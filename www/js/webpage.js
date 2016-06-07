@@ -25,6 +25,8 @@ $(document).ready(function() {
 	if($(window).width() <= 767) {
 		$('#navbar-link').remove();
 	}
-	
-
 });
+
+function signOut() {
+	document.forms["sign_out"].submit();
+}	

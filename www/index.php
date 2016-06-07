@@ -4,6 +4,11 @@
 		header("Location: " . $newLocation);
 		exit;
 	}
+
+	function signOut() {
+		$_SESSION['logged_in'] = 0;
+		redirectTo("index.php");
+	}
 	// --------------------------------------
 
 	// Included for debugging
@@ -16,7 +21,7 @@
 
 	// Settings for login into database
 	$username = "root";	// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie
+	$password = "";		// Change to new user password - perkasie
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -32,7 +37,7 @@
 	} 
 	else {
 		// Connection is successful
-		ChromePhp::log("Am I logged_in: " . $_SESSION['logged_in']);
+		// ChromePhp::log("Am I logged_in: " . $_SESSION['logged_in']);
 		// Checks to see if log_in_redirect is set
 
 		// Checks to see if the submit button was pressed
@@ -63,9 +68,17 @@
 				$_SESSION['logged_in'] = 0;	
 			}
 
-		} 
+		} else if(!empty($_POST['log_out'])) {
+			$_SESSION['logged_in'] = 0;
+			$_POST['log_out'] = "";
+			redirectTo("index.php");
+		}
 		else {
 			// Connection error
+			if (empty($_SESSION['logged_in'])) {
+				$_SESSION['logged_in'] = "";
+			}
+
 			if ($_SESSION['logged_in'] != 1 && !empty($_POST['log_in_redirect']))
 				$_SESSION['logged_in'] = 0;
 			//ChromePhp::log("Not logged_in: " . $_SESSION['logged_in']);
@@ -155,17 +168,14 @@
 
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
 	
-		<ul class="nav navbar-nav navbar-text navbar-right">
+		<ul class="nav navbar-nav navbar-text navbar-right" id="nav-right">
 		<?php if ($_SESSION['logged_in']==0) { ?>
           <li><a href="#" onclick="location.href='index.php?id=4'">Sign In</a></li>
-        <?php } else {?>
-        	 <li><a href="#" onclick="location.href='index.php?id=4'">Welcome,
-        	 <?php 
-        	 	// Checks to see if the user is set in $_SESSION
-        	 	if (!empty($_SESSION['user']) && $_SESSION['logged_in'] == 1) {
-        	 		echo $_SESSION['user'];
-        	 	}
-        	  ?></a></li>
+        <?php } else { ?>
+        	<form name="sign_out" action="index.php?id=4" method="post">
+        	<input type="hidden" name="log_out" value="1">
+          	<li id="signout"><a href="#" onclick="signOut()">Sign Out</a></li>
+          	</form>
         <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-text navbar-left">
@@ -176,7 +186,6 @@
         </ul>
 
       </div>
-
 
     </div>
   </nav>
@@ -228,7 +237,9 @@
 							$home = 3;
 						} else if ($_GET['id'] == 4) {
 							$home = 4;
-						} else {
+						}  else if ($_GET['id'] == 5) {
+							$home = 5;
+						}  else {
 							$home = 0;
 						}
 					 ?>
@@ -245,18 +256,32 @@
 
 					<div ng-show="<?php echo $home; ?> == 4">
 						<form action="index.php?id=4" method="post">
-								Username: <input type="text" name="username" value="" /><br />
-								Password: <input type="password" name="password" value="" /><br />
-								<br />
-								<input type="submit" name="submit" value="Submit" />
-								<?php 
-									if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
-										echo "Unsuccessful Login - Please Try Again";
-									} 	
-								?>
+							Username: <input type="text" name="username" value="" /><br />
+							Password: <input type="password" name="password" value="" /><br />
+							<br />
+							<input type="submit" name="submit" value="Submit" />
+							<input type="submit" name="register" value="Register">
+							<?php 
+								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
+									echo "Unsuccessful Login - Please Try Again";
+								} 	
+							?>
 						</form>
 					</div>
 
+					<div ng-show="<?php echo $home; ?> == 5">
+						<form>
+							Email: <input type="text" name="email" value="" />
+							<br />
+							First Name: <input type="text" name="firstName" value="" />
+							<br />
+							Last Name: <input type="text" name="lastName" value="" />
+							<br />
+							Phone Number: <input type="text" name="phone" value="" />
+							<br />
+							<input type="submit" name="register" value="Submit" />
+						</form>
+					</div>
 				</div>
 
 			</div>

@@ -50,6 +50,20 @@ body {
 	color: #FFF;
 }
 
+/* Style for log out button - Bootstrap overides */
+#signout {
+	height: 40px;	/* Default Bootstrap Size */
+	height: 100%;
+	width: 100%;
+}
+
+#signout>a {
+	color: #FFF;
+	padding: 10px 15px;
+	height: 100%;
+	width: 100%;
+}
+
 /* Content */
 
 #top-empty {
