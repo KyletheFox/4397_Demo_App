@@ -20,8 +20,8 @@
 	// ------ Attempt to gain access to mysql server -----
 
 	// Settings for login into database
-	$username = "root";	// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie
+	$username = "root";			// Change to nonroot user - root / User_Level
+	$password = "C7t32813";		// Change to new user password - perkasie
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -69,13 +69,51 @@
 			}
 
 		} else if(!empty($_POST['log_out'])) {
+			// User clicks sign out link
 			$_SESSION['logged_in'] = 0;
 			$_POST['log_out'] = "";
 			redirectTo("index.php");
+		
+		} else if (!empty($_POST['register'])) {
+			// User clicks button to register
+			// -- Using php because there are two buttons in form
+			redirectTo("index.php?id=5");
+		
+		} else if (!empty($_POST['create_user'])) {
+			// Attempts to register user
+
+			// Checks to see if db already has username/email
+
+			/* If no email is found
+				-- Insert new user into db
+				-- Display Sucess message  
+			*/
+
+			/*	Else
+				-- redirect to login page
+				-- Display email is already used 
+			*/
+		} else if (!empty($_POST['forgot_pass'])) {
+			// Resets user password
+
+			// Checks to see if user name exists
+
+			/* If user name exists
+				-- Ask user for new pasword
+				-- Updates db with new password
+			*/
+
+			/* else
+				-- redirect to sign in page
+				-- Display message that username is not valid
+			*/
+
 		}
+		
 		else {
-			// Connection error
+			// Connection error 
 			if (empty($_SESSION['logged_in'])) {
+				// Keeps user logged out if never logged in
 				$_SESSION['logged_in'] = "";
 			}
 
@@ -271,6 +309,7 @@
 
 					<div ng-show="<?php echo $home; ?> == 5">
 						<form>
+						<!-- Needs to make sure all input is entered before submitting-->
 							Email: <input type="text" name="email" value="" />
 							<br />
 							First Name: <input type="text" name="firstName" value="" />
