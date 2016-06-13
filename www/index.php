@@ -21,7 +21,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie
+	$password = "";		// Change to new user password - perkasie / work no pass
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -308,17 +308,39 @@
 					</div>
 
 					<div ng-show="<?php echo $home; ?> == 5">
-						<form>
+						<form name="regForm">
 						<!-- Needs to make sure all input is entered before submitting-->
-							Email: <input type="text" name="email" value="" />
+							Email: <input type="email" name="email" value="" ng-model="email" required>
+							<span ng-show="regForm.email.$invalid && regForm.email.$dirty">
+								<span ng-show="regForm.email.$error.required">Email is Required</span>
+								<span ng-show="regForm.email.$error.email">Invalid email address.</span>
+							</span>
 							<br />
-							First Name: <input type="text" name="firstName" value="" />
+							First Name: <input type="text" name="firstName" value="" ng-model="fName" required>
+							<span ng-show="regForm.firstName.$invalid && regForm.firstName.$dirty">
+								<span ng-show="regForm.firstName.$error.required">First Name is required</span>
+							</span>
 							<br />
-							Last Name: <input type="text" name="lastName" value="" />
+							Last Name: <input type="text" name="lastName" value="" ng-model="lName" required/>
+							<span ng-show="regForm.lastName.$invalid && regForm.lastName.$dirty">
+								<span ng-show="regForm.lastName.$error.required">Last Name is required</span>
+							</span>
 							<br />
-							Phone Number: <input type="text" name="phone" value="" />
+							Phone Number: <input type="text" name="phone" value="" ng-model="phone" required/>
+							<span ng-show="regForm.phone.$invalid && regForm.phone.$dirty">
+								<span ng-show="regForm.phone.$error.required">Phone Number is required</span>
+							</span>
 							<br />
-							<input type="submit" name="register" value="Submit" />
+							Password: <input type="text" name="pass" value="" ng-model="pass" required/>
+							<span ng-show="regForm.pass.$invalid && regForm.pass.$dirty">
+								<span ng-show="regForm.pass.$error.required">Password is required</span>
+							</span>
+							<br />
+							<input type="submit" name="register" value="Submit" ng-disabled="regForm.email.$invalid && regForm.email.$dirty ||
+											regForm.firstName.$invalid && regForm.firstName.$dirty ||
+											regForm.lastName.$invalid && regForm.lastName.$dirty ||
+											regForm.phone.$invalid && regForm.phone.$dirty ||
+											regForm.pass.$invalid && regForm.pass.$dirty"/>
 						</form>
 					</div>
 				</div>
