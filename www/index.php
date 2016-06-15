@@ -47,7 +47,7 @@
 			$pass = $_POST['password'];
 
 			// SQL quere string
-			$query =  "SELECT * FROM logininfo ";
+			$query =  "SELECT * FROM login_info ";
 			$query .= 'WHERE username =  "' . $user . '" AND ';
 			$query .= 'password = "' . $pass . '"';
 
@@ -81,13 +81,47 @@
 		
 		} else if (!empty($_POST['create_user'])) {
 			// Attempts to register user
-
+			
 			// Checks to see if db already has username/email
+			$user = $_POST['email'];
+			echo "<h1>" . $user . "</h1>"; 
+
+			$query = "SELECT * FROM login_info ";
+			$query .= "WHERE username = " . $user . '"';
+
+			$match = mysqli_query($connection, $query);	
+			$match = mysqli_fetch_assoc($match);
 
 			/* If no email is found
 				-- Insert new user into db
 				-- Display Sucess message  
 			*/
+			if (empty($match)) {
+				// Username doesn't exist
+				$insert_user = "INSERT INTO login_info ";
+				$insert_user .= "('username', 'password', `fName`, `lName`, `phone`) ";
+				$insert_user .= "VALUES ('" . $_POST['email'] . "', '" .
+										$_POST['pass'] . "', '" .
+										$_POST['firstName'] . "', '" .
+										$_POST['lastName'] . "', '" .
+										$_POST['phone'] . "')";
+				$success_insert = mysqli_query($connection, $insert_user);
+
+				if($success_insert) {
+					// New User was sucessfully entered into DB
+					$_SESSION['success_insert'] = 1;	// True
+					redirectTo("index.php?id=4");		// login page
+				} else {
+					// Unsuccessful db query
+					// TODO - Do something???
+					$_SESSION['bad_query'] = 1;
+				}	
+
+			} else {
+				// Username already exists
+				$_SESSION['user_already_exists'] = 1;
+				//redirectTo("index.php?id=4");
+			}
 
 			/*	Else
 				-- redirect to login page
@@ -302,13 +336,16 @@
 							<?php 
 								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
 									echo "Unsuccessful Login - Please Try Again";
-								} 	
+								} else if (!empty($_SESSION['success_insert'])) {
+									echo "You are now registered - Please Login";
+									$_SESSION['success_insert'] = null;
+								}	
 							?>
 						</form>
 					</div>
 
 					<div ng-show="<?php echo $home; ?> == 5">
-						<form name="regForm">
+						<form name="regForm" action="index.php?id=5" method="post">
 						<!-- Needs to make sure all input is entered before submitting-->
 							Email: <input type="email" name="email" value="" ng-model="email" required>
 							<span ng-show="regForm.email.$invalid && regForm.email.$dirty">
@@ -331,16 +368,22 @@
 								<span ng-show="regForm.phone.$error.required">Phone Number is required</span>
 							</span>
 							<br />
-							Password: <input type="text" name="pass" value="" ng-model="pass" required/>
+							Password: <input type="password" name="pass" value="" ng-model="pass" required/>
 							<span ng-show="regForm.pass.$invalid && regForm.pass.$dirty">
 								<span ng-show="regForm.pass.$error.required">Password is required</span>
 							</span>
 							<br />
-							<input type="submit" name="register" value="Submit" ng-disabled="regForm.email.$invalid && regForm.email.$dirty ||
+							<input type="submit" name="create_user" value="Submit" ng-disabled="regForm.email.$invalid && regForm.email.$dirty ||
 											regForm.firstName.$invalid && regForm.firstName.$dirty ||
 											regForm.lastName.$invalid && regForm.lastName.$dirty ||
 											regForm.phone.$invalid && regForm.phone.$dirty ||
 											regForm.pass.$invalid && regForm.pass.$dirty"/>
+							<?php
+								if (!empty($_SESSION['user_already_exists'])) {
+									echo "Username already exist - Please Try Again";
+									$_SESSION['user_already_exists'] = null;
+								}
+							?>
 						</form>
 					</div>
 				</div>
@@ -349,12 +392,15 @@
 
 			<div class="col">
 				<!-- EMPTY -->
+
 			</div>
 		</div>
 
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
-		
+		<?php echo "<h1>" . $_SESSION['bad_query'] . "</h1>"; 
+		$_SESSION['bad_query'] = null;
+		?>
 		</div>
 	
 	</div> <!-- End of Container Fluid -->
