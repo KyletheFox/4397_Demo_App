@@ -21,7 +21,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie / work no pass
+	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -146,17 +146,18 @@
 
 			// Checks to see if username and lName exists
 			$query = "SELECT * FROM login_info ";
-			$query .= "WHERE username = " . $user_forgot . ' AND ';
-			$query .= "lName = " . $last_forgot . '"';
+			$query .= "WHERE username = '" . $user_forgot . "' AND ";
+			$query .= "lName = '" . $last_forgot . "'";
 
 			$match = mysqli_query($connection, $query);
 			//$match = mysqli_fetch_assoc($match);
 
 			if (!empty($match)) {
 				// If the entry exists, update db with new password
+
 				$forgot_update = "UPDATE login_info ";
-				$forgot_update .= "SET password= " . $pass_forgot . " ";
-				$forgot_update .= "WHERE username= " . $user_forgot . '"';
+				$forgot_update .= "SET password= '" . $pass_forgot . "' ";
+				$forgot_update .= "WHERE username= '" . $user_forgot . "'";
 
 				$success_update = mysqli_query($connection, $forgot_update);
 
@@ -169,10 +170,12 @@
 					redirectTo("index.php?id=4");
 				} else {
 				// Update was unsuccessful
+					echo $query;
 					$_SESSION['pass_reset_bad'] = 1;
 				}
 			} else {
 				// No username/lName matches found
+				//echo $query;
 				$_SESSION['pass_reset_bad'] = 1;	// Display 
 			}
 
@@ -373,8 +376,8 @@
 							Password: <input type="password" name="password" value="" /><br />
 							<br />
 							<input type="submit" name="submit" value="Submit" />
-							<input type="submit" name="register" value="Register">
-							<input type="submit" name="pass_reset_button" value="Forgot Password">
+							<input type="submit" name="register" value="Register" />
+							<input type="submit" name="pass_reset_button" value="Forgot Password" />
 							<?php 
 								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
 									echo "Unsuccessful Login - Please Try Again";
