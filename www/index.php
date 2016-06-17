@@ -21,7 +21,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie / work no pass
+	$password = "C7t32813";		// Change to new user password - perkasie / work no pass
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -84,13 +84,12 @@
 			
 			// Checks to see if db already has username/email
 			$user = $_POST['email'];
-			echo "<h1>" . $user . "</h1>"; 
 
 			$query = "SELECT * FROM login_info ";
 			$query .= "WHERE username = " . $user . '"';
 
 			$match = mysqli_query($connection, $query);	
-			$match = mysqli_fetch_assoc($match);
+			//$match = mysqli_fetch_assoc($match);
 
 			/* If no email is found
 				-- Insert new user into db
@@ -98,8 +97,9 @@
 			*/
 			if (empty($match)) {
 				// Username doesn't exist
+				 
 				$insert_user = "INSERT INTO login_info ";
-				$insert_user .= "('username', 'password', `fName`, `lName`, `phone`) ";
+				$insert_user .= "(username, password, fName, lName, phone) ";
 				$insert_user .= "VALUES ('" . $_POST['email'] . "', '" .
 										$_POST['pass'] . "', '" .
 										$_POST['firstName'] . "', '" .
@@ -107,19 +107,24 @@
 										$_POST['phone'] . "')";
 				$success_insert = mysqli_query($connection, $insert_user);
 
-				if($success_insert) {
+				echo "<h1>" . $insert_user . "</h1>";
+
+				if (!empty($success_insert)) {
+					echo "<h1>Success</h1>";
 					// New User was sucessfully entered into DB
 					$_SESSION['success_insert'] = 1;	// True
 					redirectTo("index.php?id=4");		// login page
 				} else {
 					// Unsuccessful db query
 					// TODO - Do something???
+					echo "<h1>Unsuccess</h1>";
 					$_SESSION['bad_query'] = 1;
 				}	
 
 			} else {
 				// Username already exists
 				$_SESSION['user_already_exists'] = 1;
+				echo "<h1>UNSuccess</h1>";
 				//redirectTo("index.php?id=4");
 			}
 
@@ -127,15 +132,49 @@
 				-- redirect to login page
 				-- Display email is already used 
 			*/
+		} else if (!empty($_POST['pass_reset_button'])) {
+			// Forgot Password Button was pushed
+			redirectTo("index.php?id=6");
+
 		} else if (!empty($_POST['forgot_pass'])) {
 			// Resets user password
 
-			// Checks to see if user name exists
+			// Get all POST variables needed
+			$user_forgot = $_POST['user_forgot'];
+			$pass_forgot = $_POST['pass_forgot'];
+			$last_forgot = $_POST['last_forgot'];
 
-			/* If user name exists
-				-- Ask user for new pasword
-				-- Updates db with new password
-			*/
+			// Checks to see if username and lName exists
+			$query = "SELECT * FROM login_info ";
+			$query .= "WHERE username = " . $user_forgot . ' AND ';
+			$query .= "lName = " . $last_forgot . '"';
+
+			$match = mysqli_query($connection, $query);
+			//$match = mysqli_fetch_assoc($match);
+
+			if (!empty($match)) {
+				// If the entry exists, update db with new password
+				$forgot_update = "UPDATE login_info ";
+				$forgot_update .= "SET password= " . $pass_forgot . " ";
+				$forgot_update .= "WHERE username= " . $user_forgot . '"';
+
+				$success_update = mysqli_query($connection, $forgot_update);
+
+				if (!empty($success_update)) {
+				// Update was successful
+					// Set session variable to display output on login screen
+					$_SESSION['pass_reset_good'] = 1;
+
+					// redirect to login page
+					redirectTo("index.php?id=4");
+				} else {
+				// Update was unsuccessful
+					$_SESSION['pass_reset_bad'] = 1;
+				}
+			} else {
+				// No username/lName matches found
+				$_SESSION['pass_reset_bad'] = 1;	// Display 
+			}
 
 			/* else
 				-- redirect to sign in page
@@ -309,9 +348,11 @@
 							$home = 3;
 						} else if ($_GET['id'] == 4) {
 							$home = 4;
-						}  else if ($_GET['id'] == 5) {
+						} else if ($_GET['id'] == 5) {
 							$home = 5;
-						}  else {
+						} else if ($_GET['id'] == 6) {
+							$home = 6;
+						} else {
 							$home = 0;
 						}
 					 ?>
@@ -333,12 +374,16 @@
 							<br />
 							<input type="submit" name="submit" value="Submit" />
 							<input type="submit" name="register" value="Register">
+							<input type="submit" name="pass_reset_button" value="Forgot Password">
 							<?php 
 								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
 									echo "Unsuccessful Login - Please Try Again";
 								} else if (!empty($_SESSION['success_insert'])) {
 									echo "You are now registered - Please Login";
 									$_SESSION['success_insert'] = null;
+								} elseif (!empty($_SESSION['pass_reset_good'])) {
+									echo "Password Successfully Reset - Please Login";
+									$_SESSION['pass_reset_good'] = null;
 								}	
 							?>
 						</form>
@@ -386,6 +431,21 @@
 							?>
 						</form>
 					</div>
+
+					<div ng-show="<?php echo $home; ?> == 6">
+						<form name="resetPassword" action="index.php?id=6" method="post">
+							Username: <input type="text" name="user_forgot" value="" />
+							New Password: <input type="password" name="pass_forgot" />
+							Last Name: <input type="text" name="last_forgot" value="" />
+							<input type="submit" name="forgot_pass" value="Reset Password"> 
+							<?php 
+								if (!empty($_SESSION['pass_reset_bad'])) {
+									echo "Unable to reset password. Please Try Again";
+									$_SESSION['pass_reset_bad'] = null;
+								}
+							 ?>
+						</form>
+					</div>
 				</div>
 
 			</div>
@@ -398,9 +458,6 @@
 
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
-		<?php echo "<h1>" . $_SESSION['bad_query'] . "</h1>"; 
-		$_SESSION['bad_query'] = null;
-		?>
 		</div>
 	
 	</div> <!-- End of Container Fluid -->
