@@ -25,6 +25,20 @@ $(document).ready(function() {
 	if($(window).width() <= 767) {
 		$('#navbar-link').remove();
 	}
+
+	$("#giphy-button").click(function(){
+		$.ajax({
+			type : "GET",
+			url : "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + $("#giphy-search").attr("value"),
+			contentType : "application/json; charset=utf-8",
+			success : function(response) {
+				console.log("Response: " + JSON.stringify(response));
+				var obj = $.parseJSON(JSON.stringify(response));
+				console.log("object.data: " + obj.data.image_url);
+				$("#the-gif").attr("src", obj.data.image_url);
+			}
+		});
+	});
 });
 
 function signOut() {
