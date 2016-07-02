@@ -17,11 +17,32 @@
 	// Start Session
 	session_start();
 
+	// Logic for switching between pages
+	if (!isset($_GET['id'])) {
+		$home = 0;
+	} else if ($_GET['id'] == 1) {
+		$home = 1;
+	} else if ($_GET['id'] == 2) {
+		$home = 2;
+	} else if ($_GET['id'] == 3) {
+		$home = 3;
+	} else if ($_GET['id'] == 4) {
+		$home = 4;
+	} else if ($_GET['id'] == 5) {
+		$home = 5;
+	} else if ($_GET['id'] == 6) {
+		$home = 6;
+	} else if ($_GET['id'] == 7) {
+		$home = 7;
+	} else {
+		$home = 0;
+	}
+
 	// ------ Attempt to gain access to mysql server -----
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -261,7 +282,7 @@
 
 	 <!--Bootstrap Fixed Navbar -->
    <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid" id="buttons-cont">
       
       <div class="navbar-header">
         
@@ -294,6 +315,9 @@
         <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-text navbar-left">
+          <li><a href="index.php?id=1">Academic History</a></li>
+          <li><a href="index.php?id=2">Technical Projects</a></li>
+          <li><a href="index.php?id=3">Volunteer Projects</a></li>
         <?php if ($_SESSION['logged_in']==1) { ?>
           <li><a href="resume.pdf">Resume</a></li>
           <li><a href="bank_app/bank.php">Currency Converter</a></li>
@@ -306,7 +330,7 @@
     </div>
   </nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid no-padding">
 	
 <!-- Top Row -->
 		<div class="row" id="top-empty">	
@@ -316,19 +340,7 @@
 		
 <!-- Button Row -->
 		<div class="row" id="buttons">
-			<div class="col col-xs-1 col-md-3">
-				<!-- EMPTY -->
-			</div>
-
-			<div class="col col-xs-10 col-md-6" id="button-box">
-				<button type="button" class="btn btn-default" onclick="location.href='index.php?id=1'">Academics</button>
-				<button type="button" class="btn btn-default" onclick="location.href='index.php?id=2'">Technical Projects</button>
-				<button type="button" class="btn btn-default" onclick="location.href='index.php?id=3'">Volunteer Projects</button>
-			</div>
-
-			<div class="col">
-				
-			</div>
+			<!-- Empty -->
 		</div>
 
 
@@ -342,33 +354,11 @@
 
 				<div id="content-box-text">
 
-					<?php // Logic for switching between pages
-						if (!isset($_GET['id'])) {
-							$home = 0;
-						} else if ($_GET['id'] == 1) {
-							$home = 1;
-						} else if ($_GET['id'] == 2) {
-							$home = 2;
-						} else if ($_GET['id'] == 3) {
-							$home = 3;
-						} else if ($_GET['id'] == 4) {
-							$home = 4;
-						} else if ($_GET['id'] == 5) {
-							$home = 5;
-						} else if ($_GET['id'] == 6) {
-							$home = 6;
-						} else if ($_GET['id'] == 7) {
-							$home = 7;
-						} else {
-							$home = 0;
-						}
-					 ?>
-
-					<div ng-show="<?php echo $home; ?> == 0">
+					<div ng-hide="<?php echo $home; ?> != 0">
 						<img src="img/profilepic.jpg" id="home-page-pic">
 					</div>
 
-					<academics ng-show="<?php echo $home; ?> == 1"></academics>
+					<academics ng-hide="<?php echo $home; ?> != 1"></academics>
 
 					<tech-proj ng-show="<?php echo $home; ?> == 2"></tech-proj>
 
@@ -455,7 +445,7 @@
 					</div>
 
 					<div ng-show="<?php echo $home; ?> == 7">
-						<div class="container-fluid">
+						<div class="container-fluid" id="gif-page">
 	
 							<!-- Title Row -->
 							<div class="row">
@@ -465,9 +455,8 @@
 								</div>
 
 								<div class="col-xs-12 col-lg-6">
-									<h1>Welcome to my Giphy App</h1>
-									<h2>Please type in a word/phrase and a random gif will appear
-										below based on your input</h2>
+									<h1>Gif Generator</h1>
+									<h6>Please type in a word/phrase and a random gif will appear below based on your input. Its a good way to kill an hour.</h6>
 								</div>
 
 								<div class="col-xs-0 col-lg-3">
@@ -478,41 +467,11 @@
 
 							<!-- app -->
 							<div class="row">
-								<div class="col-xs-0 col-lg-3">
-									<!-- empty row -->
-								</div>
-
-								<div class="col-xs-12 col-lg-6">
 									<input type="text" name="giphy-search" id="giphy-search">
-									<br>
+									<!-- <br> -->
 									<button type="button" id="giphy-button">Click me</button>
-									<br>
-									<img src="#" id="the-gif">
-								</div>
 
-								<div class="col-xs-0 col-lg-3">
-									<!-- empty row -->
-								</div>
-							
 							</div>
-
-							<!-- <script type="text/javascript">
-							$(document).ready( function() {
-								$("#giphy-button").click(function(){
-									console.log("clicked giphy-button");
-									$.ajax({
-										type : "GET",
-										url : "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + ("#giphy-search").text(),
-										contentType : "application/json; charset=utf-8",
-										success : function(response) {
-											console.log("Response: " + response);
-											var obj = jQuery.parseJSON(response);
-											("#the-gif").attr("href", obj.image_url);
-										}
-									});
-								});
-							});
-							</script> -->
 
 						</div>
 					</div>
@@ -529,7 +488,13 @@
 
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
+			<div class="no-padding">
+				<div ng-show="<?php echo $home; ?> == 7" id="the-gif-cont">
+					<img src="" id="the-gif">
+				</div>
+			</div>
 		</div>
+
 	
 	</div> <!-- End of Container Fluid -->
 
