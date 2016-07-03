@@ -455,7 +455,7 @@
 								</div>
 
 								<div class="col-xs-12 col-lg-6">
-									<h1>Gif Generator</h1>
+									<h1 id="gif-gen-label">Gif Generator</h1>
 									<h6>Please type in a word/phrase and a random gif will appear below based on your input. Its a good way to kill an hour.</h6>
 								</div>
 

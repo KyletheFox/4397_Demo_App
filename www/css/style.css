@@ -75,7 +75,7 @@ body {
 
 #the-gif-cont {
 	margin-top: 20px;
-	background-color: #FFF;
+	background-color: #000;
 }
 
 #the-gif {
@@ -100,8 +100,10 @@ body {
 	border: 1px solid black;
 	display: block;
 	margin: auto;
-	margin-top: 0.2em;
+	margin-top: 10px;
 	margin-bottom: 0.2em;
+	height: 40px;
+	width: 90px;
 }
 
 /* Content */
@@ -132,6 +134,10 @@ body {
 
 #button-cont {
 	height: 50px;
+}
+
+#gif-gen-label {
+	margin-top: 0px;
 }
 
 .btn {
