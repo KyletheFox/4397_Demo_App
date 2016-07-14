@@ -205,9 +205,10 @@
 				-- Display message that username is not valid
 			*/
 
-		}
-		
-		else {
+		} else if(!empty($_GET['log_out'])) {
+			$_SESSION['logged_in'] = 0;
+
+		} else {
 			// Connection error 
 			if (empty($_SESSION['logged_in'])) {
 				// Keeps user logged out if never logged in
@@ -319,10 +320,10 @@
 		<?php if ($_SESSION['logged_in']==0) { ?>
           <li><a href="#" onclick="location.href='index.php?id=4'">Sign In</a></li>
         <?php } else { ?>
-        	<form name="sign_out" action="index.php?id=4" method="post">
-        	<input type="hidden" name="log_out" value="1">
-          	<li id="signout"><a href="#" onclick="signOut()">Sign Out</a></li>
-          	</form>
+        	<!-- <form name="sign_out" action="index.php?id=4" method="post"> -->
+        	<!-- <input type="hidden" name="log_out" value="1"> -->
+          	<li id="signout"><a href="<?php echo 'index.php?' . $_SERVER['QUERY_STRING'] . '&log_out=t' ?>">Sign Out</a></li>
+          	<!-- </form> -->
         <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-text navbar-left">
@@ -491,7 +492,7 @@
 
 			</div>
 
-			<div class="col">
+			<div class="col col col-xs-1 col-md-3">
 				<!-- EMPTY -->
 
 			</div>
@@ -499,13 +500,14 @@
 
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
-			<div class="no-padding">
+
+			<div class="no-padding col-xs-12 col-lg-6">
 				<div ng-show="<?php echo $home; ?> == 7" id="the-gif-cont">
 					<img src="" id="the-gif">
 				</div>
 			</div>
-		</div>
 
+		</div>
 	
 	</div> <!-- End of Container Fluid -->
 

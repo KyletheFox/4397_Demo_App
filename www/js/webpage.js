@@ -65,7 +65,15 @@ $(document).ready(function() {
 });
 
 function signOut() {
-	document.forms["sign_out"].submit();
+      $.ajax({
+           type: "POST",
+           url: 'php/logOut.php',
+           data:{action:'signOut'},
+           success:function(html) {
+             alert(html);
+           }
+
+      });
 }	
 
 function htmlEscape(str) {
