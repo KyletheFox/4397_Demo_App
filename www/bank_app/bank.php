@@ -53,7 +53,9 @@
 
 	<div class="row">
 		
-		<div class="col-xs-0 col-lg-3"></div>
+		<div class="col-xs-0 col-lg-3">
+      <!-- Empty Row   -->
+    </div>
 
 		<div class="col-xs-12 col-lg-6 content">
 			
@@ -79,13 +81,13 @@
   				</ul>
 			</div>
 
-			
-
-    		<h1 class="output"></h1>
+      <h1 class="output"></h1>
 
 		</div>
 
-		<div class="col-xs-0 col-lg-3"></div>
+		<div class="col-xs-0 col-lg-3">
+     <!-- Empty Row   -->
+    </div>
 
 	</div>
 

@@ -1,7 +1,3 @@
-html, body {
-	height: 100%;
-}
-
 h1 {
 	text-align: center;
 }
@@ -26,9 +22,11 @@ h3 {
 }
 
 .scrollable-menu {
+	margin-left: -20%;
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
+    width: 140%;
 }
 
 .dropdown {
@@ -45,6 +43,11 @@ h3 {
 
 .dropdown-toggle {
 	width: 100%;
+}
+
+.btn {
+	margin: 0px;
+	background-color: #BBB;
 }
 
 .go {

@@ -34,6 +34,8 @@
 		$home = 6;
 	} else if ($_GET['id'] == 7) {
 		$home = 7;
+	} else if ($_GET['id'] == 8) {
+		$home = 8;
 	} else {
 		$home = 0;
 	}
@@ -42,7 +44,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -261,6 +263,7 @@
 
   	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="./css/bank.css"> -->
 
 	<!-- Modules -->
 	<script type="text/javascript" src="./js/app.js"></script>
@@ -274,9 +277,11 @@
     <script src="./js/directives/volunteer.js"></script>
     <script src="./js/directives/login.js"></script>
     <script src="./js/directives/giphy.js"></script>
+    <script src="./js/directives/bank-app.js"></script>
 
 	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script> 
+	<script type="text/javascript" src="js/bank.js"></script> 
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -329,10 +334,9 @@
         <ul class="nav navbar-nav navbar-text navbar-left">
           <li><a href="index.php?id=1">Academic History</a></li>
           <li><a href="index.php?id=2">Technical Projects</a></li>
-          <li><a href="index.php?id=3">Volunteer Projects</a></li>
-        <?php if ($_SESSION['logged_in']==1) { ?>
           <li><a href="resume.pdf">Resume</a></li>
-          <li><a href="bank_app/bank.php">Currency Converter</a></li>
+        <?php if ($_SESSION['logged_in']==1) { ?>
+          <li><a href="index.php?id=8">Currency Converter</a></li>
           <li><a href="index.php?id=7">Giphy App</a></li>
         <?php } ?>
         </ul>
@@ -348,13 +352,6 @@
 		<div class="row" id="top-empty">	
 			<!-- EMPTY -->
 		</div>
-
-		
-<!-- Button Row -->
-		<div class="row" id="buttons">
-			<!-- Empty -->
-		</div>
-
 
 <!-- Content Row -->
 		<div class="row" id="content">
@@ -378,12 +375,17 @@
 
 					<div ng-show="<?php echo $home; ?> == 4">
 						<form action="index.php?id=4" method="post">
-							Username: <input type="text" name="username" value="" /><br />
-							Password: <input type="password" name="password" value="" /><br />
-							<br />
-							<input type="submit" name="submit" value="Submit" />
-							<input type="submit" name="register" value="Register" />
-							<input type="submit" name="pass_reset_button" value="Forgot Password" />
+							<div class="form-group">
+								<label>Username</label>
+								<input type="email" name="username" class="form-group" value=""/>
+							</div>
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" name="password" class="form-group" value="" /><br />
+							</div>
+							<input type="submit" class="btn btn-default" name="submit" value="Submit" />
+							<input type="submit" class="btn btn-default" name="register" value="Register" />
+							<input type="submit" class="btn btn-default" name="pass_reset_button" value="Forgot Password" />
 							<?php 
 								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
 									echo "Unsuccessful Login - Please Try Again";
@@ -401,33 +403,43 @@
 					<div ng-show="<?php echo $home; ?> == 5">
 						<form name="regForm" action="index.php?id=5" method="post">
 						<!-- Needs to make sure all input is entered before submitting-->
-							Email: <input type="email" name="email" value="" ng-model="email" required>
-							<span ng-show="regForm.email.$invalid && regForm.email.$dirty">
-								<span ng-show="regForm.email.$error.required">Email is Required</span>
-								<span ng-show="regForm.email.$error.email">Invalid email address.</span>
-							</span>
-							<br />
-							First Name: <input type="text" name="firstName" value="" ng-model="fName" required>
+							<div class="form-group">
+								<label>Email:</label>
+								<input type="email" name="email" value="" ng-model="email" class="form-group" required>
+								<span ng-show="regForm.email.$invalid && regForm.email.$dirty">
+									<span ng-show="regForm.email.$error.required">Email is Required</span>
+									<span ng-show="regForm.email.$error.email">Invalid email address.</span>
+								</span>
+							</div>
+						<div class="form-group">
+							<label>First Name:</label> 
+							<input type="text" name="firstName" value="" ng-model="fName" class="form-group" required>
 							<span ng-show="regForm.firstName.$invalid && regForm.firstName.$dirty">
 								<span ng-show="regForm.firstName.$error.required">First Name is required</span>
 							</span>
-							<br />
-							Last Name: <input type="text" name="lastName" value="" ng-model="lName" required/>
+						</div>
+						<div class="form-group">
+							<label>Last Name:</label> 
+							<input type="text" name="lastName" value="" ng-model="lName" class="form-group" required/>
 							<span ng-show="regForm.lastName.$invalid && regForm.lastName.$dirty">
 								<span ng-show="regForm.lastName.$error.required">Last Name is required</span>
 							</span>
-							<br />
-							Phone Number: <input type="text" name="phone" value="" ng-model="phone" required/>
+						</div>
+						<div class="form-group">
+							<label>Phone Number:</label>
+							<input type="text" name="phone" value="" ng-model="phone" class="form-group" required/>
 							<span ng-show="regForm.phone.$invalid && regForm.phone.$dirty">
 								<span ng-show="regForm.phone.$error.required">Phone Number is required</span>
 							</span>
-							<br />
-							Password: <input type="password" name="pass" value="" ng-model="pass" required/>
+						</div>
+						<div class="form-group">
+							<label>Password:</label>
+							<input type="password" name="pass" value="" ng-model="pass" class="form-group" required/>
 							<span ng-show="regForm.pass.$invalid && regForm.pass.$dirty">
 								<span ng-show="regForm.pass.$error.required">Password is required</span>
 							</span>
-							<br />
-							<input type="submit" name="create_user" value="Submit" ng-disabled="regForm.email.$invalid && regForm.email.$dirty ||
+						</div>
+							<input class="btn btn-default" type="submit" name="create_user" value="Submit" ng-disabled="regForm.email.$invalid && regForm.email.$dirty ||
 											regForm.firstName.$invalid && regForm.firstName.$dirty ||
 											regForm.lastName.$invalid && regForm.lastName.$dirty ||
 											regForm.phone.$invalid && regForm.phone.$dirty ||
@@ -443,10 +455,19 @@
 
 					<div ng-show="<?php echo $home; ?> == 6">
 						<form name="resetPassword" action="index.php?id=6" method="post">
-							Username: <input type="text" name="user_forgot" value="" />
-							New Password: <input type="password" name="pass_forgot" />
-							Last Name: <input type="text" name="last_forgot" value="" />
-							<input type="submit" name="forgot_pass" value="Reset Password"> 
+							<div class="form-group">
+								<label>Username:</label>
+								<input type="text" class="form-group" name="user_forgot" value="" />
+							</div>
+							<div class="form-group">
+								<label>New Password:</label>
+								<input type="password" class="form-group" name="pass_forgot" />
+							</div>
+							<div class="form-group">
+								<label>Last Name:</label>
+								<input type="text" class="form-group" name="last_forgot" value="" />
+							</div>
+							<input class="btn btn-default" type="submit" name="forgot_pass" value="Reset Password"> 
 							<?php 
 								if (!empty($_SESSION['pass_reset_bad'])) {
 									echo "Unable to reset password. Please Try Again";
@@ -456,37 +477,8 @@
 						</form>
 					</div>
 
-					<div ng-show="<?php echo $home; ?> == 7">
-						<div class="container-fluid" id="gif-page">
-	
-							<!-- Title Row -->
-							<div class="row">
-
-								<div class="col-xs-0 col-lg-3">
-									<!-- empty row -->
-								</div>
-
-								<div class="col-xs-12 col-lg-6">
-									<h1 id="gif-gen-label">Gif Generator</h1>
-									<h6>Please type in a word/phrase and a random gif will appear below based on your input. Its a good way to kill an hour.</h6>
-								</div>
-
-								<div class="col-xs-0 col-lg-3">
-									<!-- empty row -->
-								</div>
-							
-							</div>
-
-							<!-- app -->
-							<div class="row">
-									<input type="text" name="giphy-search" id="giphy-search">
-									<!-- <br> -->
-									<button type="button" id="giphy-button">Click me</button>
-
-							</div>
-
-						</div>
-					</div>
+					<giphy ng-show="<?php echo $home; ?> == 7"></giphy>
+					<bank ng-show="<?php echo $home; ?> == 8"></bank>
 				
 				</div>
 
@@ -501,11 +493,20 @@
 <!-- Bottom Row -->
 		<div class="row" id="bottom-empty">	
 
+			<div class="col-xs-0 col-lg-3">
+				<!-- Empty Col -->
+			</div>
+
 			<div class="no-padding col-xs-12 col-lg-6">
 				<div ng-show="<?php echo $home; ?> == 7" id="the-gif-cont">
 					<img src="" id="the-gif">
 				</div>
 			</div>
+
+			<div class="col-xs-0 col-lg-3">
+				<!-- Empty Col -->
+			</div>
+
 
 		</div>
 	
