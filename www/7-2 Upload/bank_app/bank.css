@@ -1,0 +1,61 @@
+html, body {
+	height: 100%;
+	padding-top: 50px; 
+}
+
+h1 {
+	text-align: center;
+}
+
+h3 {
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: center;
+	width: 80%;
+}
+
+.container-fluid {
+	height: 100%;
+}
+
+.row {
+	height: 100%;
+}
+
+.content {
+	height: 100%;
+}
+
+.scrollable-menu {
+	margin-left: -20%;
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    width: 140%;
+}
+
+.dropdown {
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+}
+
+.input-group {
+	margin: auto;
+	padding: 10px;
+	width: 70%;
+}
+
+.dropdown-toggle {
+	width: 100%;
+}
+
+.btn {
+	margin: 0px;
+	background-color: #BBB;
+}
+
+.go {
+	box-shadow: 0px 0px 0px;
+	border: 1px solid #BBB;
+}
