@@ -44,7 +44,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -274,7 +274,7 @@
     <!-- Directives -->
     <script src="./js/directives/academics.js"></script>
     <script src="./js/directives/techProj.js"></script>
-    <script src="./js/directives/volunteer.js"></script>
+    <script src="./js/directives/signIn.js"></script>
     <script src="./js/directives/login.js"></script>
     <script src="./js/directives/giphy.js"></script>
     <script src="./js/directives/bank-app.js"></script>
@@ -371,10 +371,10 @@
 
 					<tech-proj ng-show="<?php echo $home; ?> == 2"></tech-proj>
 
-					<volunteer ng-show="<?php echo $home; ?> == 3"></volunteer>
+					<sign-in ng-show="<?php echo $home; ?> == 3"></sign-in>
 
 					<div ng-show="<?php echo $home; ?> == 4">
-						<form action="index.php?id=4" method="post">
+						<!-- <form action="index.php?id=4" method="post">
 							<div class="form-group">
 								<label>Username</label>
 								<input type="email" name="username" class="form-group" value=""/>
@@ -387,17 +387,17 @@
 							<input type="submit" class="btn btn-default" name="register" value="Register" />
 							<input type="submit" class="btn btn-default" name="pass_reset_button" value="Forgot Password" />
 							<?php 
-								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
-									echo "Unsuccessful Login - Please Try Again";
-								} else if (!empty($_SESSION['success_insert'])) {
-									echo "You are now registered - Please Login";
-									$_SESSION['success_insert'] = null;
-								} elseif (!empty($_SESSION['pass_reset_good'])) {
-									echo "Password Successfully Reset - Please Login";
-									$_SESSION['pass_reset_good'] = null;
-								}	
+								// if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
+								// 	echo "Unsuccessful Login - Please Try Again";
+								// } else if (!empty($_SESSION['success_insert'])) {
+								// 	echo "You are now registered - Please Login";
+								// 	$_SESSION['success_insert'] = null;
+								// } elseif (!empty($_SESSION['pass_reset_good'])) {
+								// 	echo "Password Successfully Reset - Please Login";
+								// 	$_SESSION['pass_reset_good'] = null;
+								// }	
 							?>
-						</form>
+						</form> -->
 					</div>
 
 					<div ng-show="<?php echo $home; ?> == 5">
