@@ -278,6 +278,7 @@
     <script src="./js/directives/login.js"></script>
     <script src="./js/directives/giphy.js"></script>
     <script src="./js/directives/bank-app.js"></script>
+    <script src="./js/directives/home-page.js"></script>
 
 	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script> 
@@ -335,10 +336,8 @@
           <li><a href="index.php?id=1">Academic History</a></li>
           <li><a href="index.php?id=2">Technical Projects</a></li>
           <li><a href="resume.pdf">Resume</a></li>
-        <?php if ($_SESSION['logged_in']==1) { ?>
           <li><a href="index.php?id=8">Currency Converter</a></li>
           <li><a href="index.php?id=7">Giphy App</a></li>
-        <?php } ?>
         </ul>
 
       </div>
@@ -363,9 +362,7 @@
 
 				<div id="content-box-text">
 
-					<div ng-hide="<?php echo $home; ?> != 0">
-						<img src="img/profilepic.jpg" id="home-page-pic">
-					</div>
+					<home ng-hide="<?php echo $home; ?> != 0"></home>
 
 					<academics ng-hide="<?php echo $home; ?> != 1"></academics>
 
