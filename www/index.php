@@ -354,17 +354,19 @@
 
 <!-- Content Row -->
 		<div class="row" id="content">
-			<div class="col col-xs-1 col-md-3">
+			<div class="col col-xs-1 col-md-1">
 				<!-- EMPTY -->
 			</div>
 
-			<div class="col col-xs-10 col-md-6" id="content-box">
+			<div id="photo-contanier" class="col col-xs-10 col-md-10" ng-show="<?php echo $home; ?> == 0">
+				<home ng-show="<?php echo $home; ?> == 0"></home>
+			</div>
+
+			<div class="col col-xs-10 col-md-10" id="content-box" ng-hide="<?php echo $home; ?> == 0">
 
 				<div id="content-box-text">
 
-					<home ng-hide="<?php echo $home; ?> != 0"></home>
-
-					<academics ng-hide="<?php echo $home; ?> != 1"></academics>
+					<academics ng-show="<?php echo $home; ?> == 1"></academics>
 
 					<tech-proj ng-show="<?php echo $home; ?> == 2"></tech-proj>
 
@@ -481,7 +483,7 @@
 
 			</div>
 
-			<div class="col col col-xs-1 col-md-3">
+			<div class="col col col-xs-1 col-md-1">
 				<!-- EMPTY -->
 
 			</div>

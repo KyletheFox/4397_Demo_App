@@ -232,6 +232,14 @@ body {
 	width: 100%;
 }
 
+#photo-contanier {
+	/*align-items: center;*/
+}
+
+home {
+	
+}
+
 /*Academics*/
  academics > .link-head {
  	margin-top: 7px;
