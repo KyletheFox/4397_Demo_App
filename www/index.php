@@ -34,8 +34,6 @@
 		$home = 6;
 	} else if ($_GET['id'] == 7) {
 		$home = 7;
-	} else if ($_GET['id'] == 8) {
-		$home = 8;
 	} else {
 		$home = 0;
 	}
@@ -44,7 +42,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -100,7 +98,7 @@
 		} else if (!empty($_POST['register'])) {
 			// User clicks button to register
 			// -- Using php because there are two buttons in form
-			redirectTo("index.php?id=5");
+			redirectTo("index.php?id=4");
 		
 		} else if (!empty($_POST['create_user'])) {
 			// Attempts to register user
@@ -157,7 +155,7 @@
 			*/
 		} else if (!empty($_POST['pass_reset_button'])) {
 			// Forgot Password Button was pushed
-			redirectTo("index.php?id=6");
+			redirectTo("index.php?id=5");
 
 		} else if (!empty($_POST['forgot_pass'])) {
 			// Resets user password
@@ -275,15 +273,14 @@
     <script src="./js/directives/academics.js"></script>
     <script src="./js/directives/techProj.js"></script>
     <script src="./js/directives/signIn.js"></script>
-    <script src="./js/directives/login.js"></script>
     <script src="./js/directives/giphy.js"></script>
     <script src="./js/directives/bank-app.js"></script>
     <script src="./js/directives/home-page.js"></script>
 
 	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script> 
-	<script type="text/javascript" src="js/bank.js"></script> 
-	<script>
+<!-- 	<script type="text/javascript" src="js/bank.js"></script> 
+ -->	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -296,7 +293,7 @@
 
 </head>
 <body ng-app="SomeDemo">
-	<div ng-controller="MainController" ng-init="display=0">
+<div ng-controller="MainController">
 
 	 <!--Bootstrap Fixed Navbar -->
    <nav class="navbar navbar-default navbar-fixed-top">
@@ -324,7 +321,7 @@
 	
 		<ul class="nav navbar-nav navbar-text navbar-right" id="nav-right">
 		<?php if ($_SESSION['logged_in']==0) { ?>
-          <li><a href="#" onclick="location.href='index.php?id=4'">Sign In</a></li>
+          <li><a href="#" onclick="location.href='index.php?id=3'">Sign In</a></li>
         <?php } else { ?>
         	<!-- <form name="sign_out" action="index.php?id=4" method="post"> -->
         	<!-- <input type="hidden" name="log_out" value="1"> -->
@@ -336,8 +333,8 @@
           <li><a href="index.php?id=1">Academic History</a></li>
           <li><a href="index.php?id=2">Technical Projects</a></li>
           <li><a href="resume.pdf">Resume</a></li>
-          <li><a href="index.php?id=8">Currency Converter</a></li>
-          <li><a href="index.php?id=7">Giphy App</a></li>
+          <li><a href="index.php?id=7">Currency Converter</a></li>
+          <li><a href="index.php?id=6">Giphy App</a></li>
         </ul>
 
       </div>
@@ -370,10 +367,11 @@
 
 					<tech-proj ng-show="<?php echo $home; ?> == 2"></tech-proj>
 
-					<sign-in ng-show="<?php echo $home; ?> == 3"></sign-in>
+					<!-- <sign-in ng-show="<?php //echo $home; ?> == 3"></sign-in> -->
 
-					<div ng-show="<?php echo $home; ?> == 4">
-						<!-- <form action="index.php?id=4" method="post">
+					<div ng-show="<?php echo $home; ?> == 3" style="max-width: 500px;">
+						<h1>Log In:</h1>
+						<form action="index.php?id=3" method="post">
 							<div class="form-group">
 								<label>Username</label>
 								<input type="email" name="username" class="form-group" value=""/>
@@ -385,22 +383,18 @@
 							<input type="submit" class="btn btn-default" name="submit" value="Submit" />
 							<input type="submit" class="btn btn-default" name="register" value="Register" />
 							<input type="submit" class="btn btn-default" name="pass_reset_button" value="Forgot Password" />
+							<br><br>
 							<?php 
-								// if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
-								// 	echo "Unsuccessful Login - Please Try Again";
-								// } else if (!empty($_SESSION['success_insert'])) {
-								// 	echo "You are now registered - Please Login";
-								// 	$_SESSION['success_insert'] = null;
-								// } elseif (!empty($_SESSION['pass_reset_good'])) {
-								// 	echo "Password Successfully Reset - Please Login";
-								// 	$_SESSION['pass_reset_good'] = null;
-								// }	
+								if (!empty($_POST['submit']) && $_SESSION['logged_in'] == 0) {
+									echo "Unsuccessful Login - Please Try Again";
+								}
 							?>
-						</form> -->
+						</form>
 					</div>
 
-					<div ng-show="<?php echo $home; ?> == 5">
-						<form name="regForm" action="index.php?id=5" method="post">
+					<div ng-show="<?php echo $home; ?> == 4">
+						<h1>Create An Account:</h1>
+						<form name="regForm" action="index.php?id=4" method="post">
 						<!-- Needs to make sure all input is entered before submitting-->
 							<div class="form-group">
 								<label>Email:</label>
@@ -452,8 +446,9 @@
 						</form>
 					</div>
 
-					<div ng-show="<?php echo $home; ?> == 6">
-						<form name="resetPassword" action="index.php?id=6" method="post">
+					<div ng-show="<?php echo $home; ?> == 5">
+						<h1>Reset Password:</h1>
+						<form name="resetPassword" action="index.php?id=5" method="post">
 							<div class="form-group">
 								<label>Username:</label>
 								<input type="text" class="form-group" name="user_forgot" value="" />
@@ -476,8 +471,8 @@
 						</form>
 					</div>
 
-					<giphy ng-show="<?php echo $home; ?> == 7"></giphy>
-					<bank ng-show="<?php echo $home; ?> == 8"></bank>
+					<giphy ng-show="<?php echo $home; ?> == 6"></giphy>
+					<bank ng-show="<?php echo $home; ?> == 7"></bank>
 				
 				</div>
 
@@ -497,7 +492,7 @@
 			</div>
 
 			<div class="no-padding col-xs-12 col-lg-6">
-				<div ng-show="<?php echo $home; ?> == 7" id="the-gif-cont">
+				<div ng-show="<?php echo $home; ?> == 6" id="the-gif-cont">
 					<img src="" id="the-gif">
 				</div>
 			</div>
@@ -511,6 +506,7 @@
 	
 	</div> <!-- End of Container Fluid -->
 
+</div>
 </body>
 </html>
 

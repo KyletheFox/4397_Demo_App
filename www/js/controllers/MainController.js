@@ -1,53 +1,40 @@
 app.controller('MainController', ['$scope', function($scope) {
-	$scope.default = "Hello Everyone";
-	$scope.display = 0;			// Counter for switching displays
-	
-	// Determines which content to load
-	$scope.hideOpen = 0;
-	$scope.hideTech = 1;
-	$scope.hideAcad = 1;
-	$scope.hideVolu = 1;
-	$scope.hideLogIn = 1;
-	
-	$scope.changeDis = function(newDisp) {
-		$scope.display = newDisp;
-		console.log("newDisp: " + newDisp);
-		console.log("Scope.display: " + $scope.display);
-
-		//  Display Academics.php
-		if (newDisp == 1) {
-			$scope.hideOpen = 1;
-			$scope.hideAcad = 1;
-			$scope.hideTech = 0;
-			$scope.hideVolu = 1;
-			$scope.hideLogIn = 1;
+	$(document).ready(function() {
+		var picClass = '.pic-';
+		for (var i = 1; i <= 20; ++i) {
+			// var imgIndex = Math.floor(Math.random()*imageSources.length);
+			// //console.log($(picClass + i));
+			// $(picClass + i).attr('src', imageSources[imgIndex]);
+			startAnimation(picClass + i);
 		}
+		
+	});
 
-		// Display techProj
-		else if (newDisp == 2) {
-			$scope.hideOpen = 1;
-			$scope.hideAcad = 0;
-			$scope.hideTech = 1;
-			$scope.hideVolu = 1;
-			$scope.hideLogIn = 1;
-		}
+	function startAnimation(id) {
+		// console.log(id);
+		var time = (Math.random() * 15000) + 4000;
+		animation(time, id);
+	}
 
-		// Display volProj
-		else if (newDisp == 3 ) {
-			$scope.hideOpen = 1;
-			$scope.hideTech = 1;
-			$scope.hideAcad = 1;
-			$scope.hideVolu = 0;
-			$scope.hideLogIn = 1;
-		}
+	function animation(time, id) {
+		var anime = setInterval(function() {
+				var imgIndex = Math.floor(Math.random()*imageSources.length);
+				$(id).fadeOut(2000, function() {
+					$(id).attr("src",imageSources[imgIndex]);
+					$(id).fadeIn(2000);
+					clearInterval(this);
+				});
+				
+		}, time);
+	}
 
-		// Display Log In Screen
-		else {
-			$scope.hideOpen = 1;
-			$scope.hideTech = 1;
-			$scope.hideAcad = 1;
-			$scope.hideVolu = 1;
-			$scope.hideLogIn = 0;
-		}
-	};
+	var imageSources = [
+		"img/autism-walk.jpg",
+		"img/hawaii-pic.jpg",
+		"img/paintball-pic.jpg",
+		"img/wedding.jpg",
+		"img/new-york.jpg",
+		"img/camping-woods.jpg",
+		"img/hawaii-tree.jpg"
+	]
 }]);

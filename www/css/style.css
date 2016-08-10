@@ -42,7 +42,6 @@ body {
 
 .navbar-header {
 	height: inherit;
-		border-bottom: 1px solid #000;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -152,6 +151,9 @@ body {
 #gif-gen-label {
 	margin-top: 0px;
 }
+.centerblock {
+	text-align: center;
+}
 
 /*Currency Converter*/
 
@@ -220,12 +222,19 @@ body {
 }
 
 .home-page-pic {
-	margin: auto;
-	height: 19vh;
-	max-height: 780px;
-	max-width: 100%;
+	margin: 0;
+	height: 180px;
+	width: 180px;
 	display: inline-block;
 	/*position: absolute;*/
+}
+
+.white {
+	background-color: #FFF;
+}
+
+.black {
+	background-color: #000;
 }
 
 .form-group {
@@ -234,10 +243,6 @@ body {
 
 #photo-contanier {
 	/*align-items: center;*/
-}
-
-home {
-	
 }
 
 /*Academics*/
