@@ -206,7 +206,7 @@ body {
 	/*box-shadow: 10px 10px 15px #000;*/
 	vertical-align: middle;
 	background-color: #FFF;
-	padding: 20px 10px;
+/*	padding: 20px 10px;*/
 	border: 2px solid #DDD;
 }
 
@@ -248,26 +248,57 @@ body {
 }
 
 /*Academics*/
- academics > .link-head {
+academics > .container-fluid > .row:nth-child(1) {
+	background: #FFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #FFF , #9e0000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFF , #9e0000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFF , #9e0000); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFF , #9e0000); /* Standard syntax */
+}
+
+academics > .container-fluid > .row:nth-child(2) {
+	background: #FFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #FFF , #4ac0ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFF , #4ac0ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFF , #4ac0ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFF , #4ac0ff); /* Standard syntax */
+}
+
+academics > .container-fluid > .row:nth-child(3) {
+	background: #FFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #FFF , #ff2929); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFF , #ff2929); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFF , #ff2929); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFF , #ff2929); /* Standard syntax */
+}
+
+academics > .container-fluid > .row:nth-child(4) {
+	background: #FFF; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #FFF , #610014); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #FFF , #610014); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #FFF , #610014); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #FFF , #610014); /* Standard syntax */
+}
+ academics > .container-fluid > .row > div >.link-head {
  	margin-top: 7px;
  	margin-bottom: 10px;
  	text-align: center;
  }
 
- academics > img {
+ academics > .container-fluid > .row > div > img {
  	margin: 20px 20px;
  	max-width: 200px;
  	max-height: 60px;
  }
 
- academics > table {
+ academics > .container-fluid > .row > div > table {
  	 margin-left: 5%;
  	 margin-bottom: 20px;
  	 border-collapse: separate;
      border-spacing: 2px;
  }
 
- academics > table > tbody > tr {
+ academics .container-fluid > .row > div > table > tbody > tr {
  	 vertical-align: top;
  }
 

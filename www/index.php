@@ -42,7 +42,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 

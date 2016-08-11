@@ -26,18 +26,19 @@
      	</p>
       </div>
     </div>
-    <div class="item">
+   <!--  <div class="item">
       <img src="img/my-fs.png" alt="..." style="height: 400px; margin: auto;">
-      <div class="carousel-caption">
+      <div class="carousel-caption" style="color: green;">
+
         <h1>FAT2 File System</h1>
         <p>Developed own file system based of of the FAT16 file system.</p>
         <p>
-			Checkout the code here: <a href="http://github.com/KyletheFox/FAT2_File_System">Github: FAT2_File_System</a>
-     	</p>
+  			 Checkout the code here: <a href="http://github.com/KyletheFox/FAT2_File_System">Github: FAT2_File_System</a>
+       	</p>
       </div>
-    </div>
+    </div> -->
     <div class="item">
-      <img src="img/no-img.jpg" alt="..." style="height: 400px; margin: auto;">
+      <img src="img/3d-pong.png" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>Virtual Reality 3D Pong</h1>
      	<p>Used Google Cardboard API and Unity to create a Virtual Reality Pong Game.</p>
@@ -59,7 +60,7 @@
     </div>
     <div class="item">
       <img src="img/fb-wit.png" alt="..." style="height: 400px; margin: auto;">
-      <div class="carousel-caption">
+      <div class="carousel-caption"  style="color: #000;">
         <h1>Wit.AI Messaging Bot</h1>
      	<p>Developed RESTful API in Spring to interact with Wit.AI to deliever responses. Developed for QVC.</p>
       </div>
