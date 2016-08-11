@@ -346,7 +346,7 @@
 	<div class="container-fluid no-padding">
 	
 <!-- Top Row -->
-		<div class="row" id="top-empty">	
+		<div class="row <?php if ($home!=2) {echo "hidden-xs";}?>" id="top-empty">	
 			<!-- EMPTY -->
 		</div>
 
@@ -486,7 +486,7 @@
 		</div>
 
 <!-- Bottom Row -->
-		<div class="row" id="bottom-empty">	
+		<div class="row <?php if ($home!=6) {echo "hidden-xs";}?>" id="bottom-empty">	
 
 			<div class="col-xs-0 col-lg-3">
 				<!-- Empty Col -->

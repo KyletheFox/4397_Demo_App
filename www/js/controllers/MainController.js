@@ -12,7 +12,7 @@ app.controller('MainController', ['$scope', function($scope) {
 
 	function startAnimation(id) {
 		// console.log(id);
-		var time = (Math.random() * 15000) + 4000;
+		var time = (Math.random() * 15000) + 3000;
 		animation(time, id);
 	}
 
@@ -90,5 +90,5 @@ app.controller('MainController', ['$scope', function($scope) {
 		"img/wedding-bride.jpg",
 		"img/wildwood.jpeg",
 		"img/wind.jpeg"
-	]
-}]);
+	];
+}]);	// End Controller

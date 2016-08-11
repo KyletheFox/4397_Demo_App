@@ -7,6 +7,7 @@ body {
 	background-repeat: repeat-y;
 	background-position: top center;
 	font-family: 'Lato', sans-serif;
+	padding-top: 50px;
 }
 
 .col {
@@ -197,8 +198,8 @@ body {
 	max-height: 820px;
 	/*background-color: #FFF;*/
 	/*opacity: 0.85;*/
-	margin-top: 20px;
-	padding: 20px; 
+	/*margin-top: 20px;
+	padding: 20px; */
 	/*border-bottom: solid #222 2px;*/
 }
 
