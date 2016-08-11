@@ -19,7 +19,7 @@
         <p>
         	My shell uses system calls to create an shell enviornment that gives users
         	similar functionality to the built in Terminal/Command Prompt. The shell 
-        	supports bash files and redirection. Built in C
+        	supports bash files and redirection. Built in C.
         </p>
         <p>
 			Checkout the code here: <a href="http://github.com/KyletheFox/Unix_Shell">Github: Unix_Shell</a>
@@ -30,7 +30,7 @@
       <img src="img/my-fs.png" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>FAT2 File System</h1>
-        <p>Blah blah blah...</p>
+        <p>Developed own file system based of of the FAT16 file system.</p>
         <p>
 			Checkout the code here: <a href="http://github.com/KyletheFox/FAT2_File_System">Github: FAT2_File_System</a>
      	</p>
@@ -40,28 +40,28 @@
       <img src="img/no-img.jpg" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>Virtual Reality 3D Pong</h1>
-     	<p>Blah blah blah...</p>
+     	<p>Used Google Cardboard API and Unity to create a Virtual Reality Pong Game.</p>
       </div>
     </div>
     <div class="item">
       <img src="img/my-giphy.png" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>Giphy App</h1>
-     	<p>Blah blah blah...</p>
+     	<p>Get a random gif based of of search term.</p>
       </div>
     </div>
     <div class="item">
-      <img src="img/no-img.jpg" alt="..." style="height: 400px; margin: auto;">
+      <img src="img/currency-app.png" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>Currency Converter App</h1>
-     	<p>Blah blah blah...</p>
+     	<p>Uses real time currency rates to convert USD to over 160 different currencies.</p>
       </div>
     </div>
     <div class="item">
       <img src="img/fb-wit.png" alt="..." style="height: 400px; margin: auto;">
       <div class="carousel-caption">
         <h1>Wit.AI Messaging Bot</h1>
-     	<p>Blah blah blah...</p>
+     	<p>Developed RESTful API in Spring to interact with Wit.AI to deliever responses. Developed for QVC.</p>
       </div>
     </div>
   </div>

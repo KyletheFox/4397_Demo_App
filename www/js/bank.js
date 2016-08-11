@@ -1,11 +1,11 @@
 $(document).ready(function() {
-
 	$.getJSON("https://openexchangerates.org/api/currencies.json?app_id=cefa48bbb66245afa07f59948dad85a1", function(result){
 		
 		var element, temp, i, j, k;
 		var outCurency;
 		var exRate;
 		var usBalance;
+        var countryCode;
 		var abv = [];
 
 		j = 0;
@@ -31,7 +31,8 @@ $(document).ready(function() {
     		$.getJSON("https://openexchangerates.org/api/latest.json?app_id=cefa48bbb66245afa07f59948dad85a1", function(current){
     			$.each(current.rates, function(ii, objj) {
     				if (ii === abv[k]) {
-    					exRate = objj;
+    					exRate = objj; 
+                        countryCode = ii;
     					console.log('ii: ' + ii);
     					console.log(exRate);
     				}
@@ -39,7 +40,7 @@ $(document).ready(function() {
 
     			$(".go").click(function() {
     				usBalance = $(".input").val();
-    				$(".output").text('$' + Math.round(usBalance*exRate*100)/100);
+    				$(".output").text(countryCode + " " + (usBalance*exRate).toFixed(2));
     			});	// End Click Go 
 
 

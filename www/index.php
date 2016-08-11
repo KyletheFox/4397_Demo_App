@@ -42,7 +42,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -263,6 +263,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="./css/bank.css"> -->
 
+	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<!-- Modules -->
 	<script type="text/javascript" src="./js/app.js"></script>
 
@@ -279,8 +280,8 @@
 
 	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script> 
-<!-- 	<script type="text/javascript" src="js/bank.js"></script> 
- -->	<script>
+	<script type="text/javascript" src="js/bank.js"></script> 
+	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -351,15 +352,15 @@
 
 <!-- Content Row -->
 		<div class="row" id="content">
-			<div class="col col-xs-1 col-md-1">
+			<div class="col col-xs-0 col-md-1">
 				<!-- EMPTY -->
 			</div>
 
-			<div id="photo-contanier" class="col col-xs-10 col-md-10" ng-show="<?php echo $home; ?> == 0">
+			<div id="photo-contanier" class="col col-xs-12 col-md-10" ng-show="<?php echo $home; ?> == 0">
 				<home ng-show="<?php echo $home; ?> == 0"></home>
 			</div>
-
-			<div class="col col-xs-10 col-md-10" id="content-box" ng-hide="<?php echo $home; ?> == 0">
+			
+			<div class="col col-xs-12 col-md-10" id="content-box" ng-hide="<?php echo $home; ?> == 0">
 
 				<div id="content-box-text">
 
@@ -369,7 +370,7 @@
 
 					<!-- <sign-in ng-show="<?php //echo $home; ?> == 3"></sign-in> -->
 
-					<div ng-show="<?php echo $home; ?> == 3" style="max-width: 500px;">
+					<div ng-show="<?php echo $home; ?> == 3" style="max-width: 500px; margin: 0 auto;">
 						<h1>Log In:</h1>
 						<form action="index.php?id=3" method="post">
 							<div class="form-group">
@@ -392,7 +393,7 @@
 						</form>
 					</div>
 
-					<div ng-show="<?php echo $home; ?> == 4">
+					<div ng-show="<?php echo $home; ?> == 4" style="max-width: 500px; margin: 0 auto;">
 						<h1>Create An Account:</h1>
 						<form name="regForm" action="index.php?id=4" method="post">
 						<!-- Needs to make sure all input is entered before submitting-->
@@ -446,7 +447,7 @@
 						</form>
 					</div>
 
-					<div ng-show="<?php echo $home; ?> == 5">
+					<div ng-show="<?php echo $home; ?> == 5" style="max-width: 500px; margin: 0 auto;">
 						<h1>Reset Password:</h1>
 						<form name="resetPassword" action="index.php?id=5" method="post">
 							<div class="form-group">
@@ -471,14 +472,14 @@
 						</form>
 					</div>
 
-					<giphy ng-show="<?php echo $home; ?> == 6"></giphy>
+					<giphy ng-show="<?php echo $home; ?> == 6" ></giphy>
 					<bank ng-show="<?php echo $home; ?> == 7"></bank>
 				
 				</div>
 
 			</div>
 
-			<div class="col col col-xs-1 col-md-1">
+			<div class="col-xs-0 col-md-1">
 				<!-- EMPTY -->
 
 			</div>

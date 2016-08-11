@@ -2,15 +2,15 @@
 
 	<div class="row">
 		
-		<div class="col-xs-0 col-lg-1">
+		<div class="col-xs-0 col-md-2">
       <!-- Empty Row   -->
     </div>
 
-		<div class="col-xs-12 col-lg-10 content">
+		<div class="col-xs-12 col-md-8 content">
 			
 			<h1 id="bank-title">Currency Converter</h1>
-			<h3 id="bank-desc">Converts USD to any other country's currency. These conversions are update
-      every hour on the hour thanks to <a href="http://openexchangerates.org">openexchangerates.org</a>'s API.</h3>
+			<h4 id="bank-desc">Converts USD to any other country's currency. These conversions are update
+      every hour on the hour thanks to <a href="http://openexchangerates.org">openexchangerates.org</a>'s API.</h4>
 
 			<div class="input-group" id="bank-input">
       	<input type="text" class="form-control input" placeholder="Balance"> 
@@ -32,7 +32,7 @@
 
 		</div>
 
-		<div class="col-xs-0 col-lg-1">
+		<div class="col-xs-0 col-md-2">
      <!-- Empty Row   -->
     </div>
 
