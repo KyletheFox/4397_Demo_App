@@ -42,7 +42,8 @@ $(document).ready(function() {
 		$('#navbar-link').remove();
 	}
 
-	
+	generateGrid($('#photo-contanier'));
+
 });
 
 function signOut() {

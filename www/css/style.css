@@ -195,7 +195,7 @@ body {
  }
 
 #content {
-	max-height: 820px;
+	height: 100%;
 	/*background-color: #FFF;*/
 	/*opacity: 0.85;*/
 	/*margin-top: 20px;
@@ -245,7 +245,13 @@ body {
 }
 
 #photo-contanier {
-	/*align-items: center;*/
+	height: 100%;
+	width: 100%;
+}
+
+.make-full {
+	height: inherit;
+	width: inherit;
 }
 
 /*Academics*/

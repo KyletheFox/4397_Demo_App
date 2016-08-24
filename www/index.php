@@ -42,7 +42,7 @@
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
-	$password = "";		// Change to new user password - perkasie / work no pass / home C7t32813#
+	$password = "C7t32813";		// Change to new user password - perkasie / work no pass / home C7t32813#
 	$dbhost = "127.0.0.1";		// Need to change for live server - nonlive 127.0.0.1
 	$dbname = "user_pass";
 
@@ -261,6 +261,7 @@
 
   	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/Grid-Generator.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="./css/bank.css"> -->
 
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
@@ -281,6 +282,7 @@
 	<script src="js/jquery-color-cycle-plugin-master/jquery.colorcycle.min.js"></script>
 	<script type="text/javascript" src="js/webpage.js"></script> 
 	<script type="text/javascript" src="js/bank.js"></script> 
+	<script type="text/javascript" src="js/Grid-Generator.js"></script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -294,7 +296,7 @@
 
 </head>
 <body ng-app="SomeDemo">
-<div ng-controller="MainController">
+<div ng-controller="MainController" class="make-full">
 
 	 <!--Bootstrap Fixed Navbar -->
    <nav class="navbar navbar-default navbar-fixed-top">
@@ -343,8 +345,13 @@
     </div>
   </nav>
 
-	<div class="container-fluid no-padding">
-	
+	<div class="container-fluid no-padding make-full">
+		
+		<?php if ($home == 0) {?>
+			<div id="photo-contanier" ng-show="<?php echo $home; ?> == 0">
+			</div>
+		<?php } ?>
+
 <!-- Top Row -->
 		<div class="row <?php if ($home!=2) {echo "hidden-xs";}?>" id="top-empty">	
 			<!-- EMPTY -->
@@ -354,10 +361,6 @@
 		<div class="row" id="content">
 			<div class="col col-xs-0 col-md-1">
 				<!-- EMPTY -->
-			</div>
-
-			<div id="photo-contanier" class="col col-xs-12 col-md-10" ng-show="<?php echo $home; ?> == 0">
-				<home ng-show="<?php echo $home; ?> == 0"></home>
 			</div>
 			
 			<div class="col col-xs-12 col-md-10" id="content-box" ng-hide="<?php echo $home; ?> == 0">
