@@ -1,4 +1,4 @@
-<?php 	/*
+<?php 	
 	//  ------ PHP functions ----------------	
 	function redirectTo($newLocation) {
 		header("Location: " . $newLocation);
@@ -12,10 +12,10 @@
 	// --------------------------------------
 
 	// Included for debugging
-	include 'ChromePhp.php';
+	//include 'ChromePhp.php';
 	
 	// Start Session
-	session_start();
+	// session_start();
 
 	// Logic for switching between pages
 	if (!isset($_GET['id'])) {
@@ -37,7 +37,7 @@
 	} else {
 		$home = 0;
 	}
-	*/
+	
 	/*
 	//  ------ Attempt to gain access to mysql server -----
 
@@ -316,7 +316,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                         
         </button>
-        <a class="navbar-brand" href="index.php">Kyle O'Neill</a>
+        <a class="navbar-brand" href="./">Kyle O'Neill</a>
 
 
       </div>
@@ -334,11 +334,11 @@
         <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-text navbar-left">
-          <li><a href="index.php?id=1">Academic History</a></li>
+          <!-- <li><a href="index.php?id=1">Academic History</a></li>
           <li><a href="index.php?id=2">Technical Projects</a></li>
           <li><a href="resume.pdf">Resume</a></li>
           <li><a href="index.php?id=7">Currency Converter</a></li>
-          <li><a href="index.php?id=6">Giphy App</a></li>
+          <li><a href="index.php?id=6">Giphy App</a></li> -->
         </ul>
 
       </div>
