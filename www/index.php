@@ -1,4 +1,4 @@
-<?php 
+<?php 	/*
 	//  ------ PHP functions ----------------	
 	function redirectTo($newLocation) {
 		header("Location: " . $newLocation);
@@ -37,8 +37,9 @@
 	} else {
 		$home = 0;
 	}
-
-	// ------ Attempt to gain access to mysql server -----
+	*/
+	/*
+	//  ------ Attempt to gain access to mysql server -----
 
 	// Settings for login into database
 	$username = "root";			// Change to nonroot user - root / User_Level
@@ -112,10 +113,10 @@
 			$match = mysqli_query($connection, $query);	
 			//$match = mysqli_fetch_assoc($match);
 
-			/* If no email is found
-				-- Insert new user into db
-				-- Display Sucess message  
-			*/
+			// If no email is found
+			//	-- Insert new user into db
+			//	-- Display Sucess message  
+			
 			if (empty($match)) {
 				// Username doesn't exist
 				 
@@ -149,10 +150,10 @@
 				//redirectTo("index.php?id=4");
 			}
 
-			/*	Else
-				-- redirect to login page
-				-- Display email is already used 
-			*/
+			//	Else
+			//	-- redirect to login page
+			//	-- Display email is already used 
+			
 		} else if (!empty($_POST['pass_reset_button'])) {
 			// Forgot Password Button was pushed
 			redirectTo("index.php?id=5");
@@ -200,10 +201,10 @@
 				$_SESSION['pass_reset_bad'] = 1;	// Display 
 			}
 
-			/* else
-				-- redirect to sign in page
-				-- Display message that username is not valid
-			*/
+			// else
+			//	-- redirect to sign in page
+			//	-- Display message that username is not valid
+			
 
 		} else if(!empty($_GET['log_out'])) {
 			$_SESSION['logged_in'] = 0;
@@ -221,7 +222,7 @@
 		}
 	}
 	// ---------------------------------------------------
-	
+	*/
 	/*
 	// ----- Actions for when login form is submitted -------
 	if (isset($_POST['submit'])) {	// Submit was pushed at least once
