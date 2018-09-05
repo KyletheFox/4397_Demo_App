@@ -24,7 +24,7 @@ function generateGrid(attachTo) {
 		dimentions = ($(attachDiv)[0].clientWidth / setupJson.cols[colIndex]);		
 
 		// Determines the number of rows needed to fill screen
-		rowsToPrint = Math.ceil($(attachDiv)[0].clientHeight/dimentions) + 1;
+		rowsToPrint = Math.ceil($(attachDiv)[0].clientHeight/dimentions);
 
 		// Gets the number of pictures loaded in from settings.json
 		numberOfPics = setupJson.pictures.length;

@@ -19,6 +19,10 @@ html, body {
 	width: 100%;
 }
 
+#photo-grid-container > .row {
+	margin: 0;
+}
+
 
 .block-row {
 	padding: 0;
