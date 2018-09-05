@@ -2,8 +2,7 @@ body {
 	height:100%;
 	width: 100%;
 	line-height:1;
-	background-color: #000;
-	background-image: url("../img/green-paturn.jpg");
+	background-color: #ffffff;
 	background-repeat: repeat-y;
 	background-position: top center;
 	font-family: 'Lato', sans-serif;
