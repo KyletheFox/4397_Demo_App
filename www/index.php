@@ -325,11 +325,11 @@
 	
 		<ul class="nav navbar-nav navbar-text navbar-right" id="nav-right">
 		<?php if ($_SESSION['logged_in']==0) { ?>
-          <li><a href="#" onclick="location.href='index.php?id=3'">Sign In</a></li>
+          <!-- <li><a href="#" onclick="location.href='index.php?id=3'">Sign In</a></li> -->
         <?php } else { ?>
         	<!-- <form name="sign_out" action="index.php?id=4" method="post"> -->
         	<!-- <input type="hidden" name="log_out" value="1"> -->
-          	<li id="signout"><a href="<?php echo 'index.php?' . $_SERVER['QUERY_STRING'] . '&log_out=t' ?>">Sign Out</a></li>
+          	<!-- <li id="signout"><a href="<?php //echo 'index.php?' . $_SERVER['QUERY_STRING'] . '&log_out=t' ?>">Sign Out</a></li> -->
           	<!-- </form> -->
         <?php } ?>
         </ul>
